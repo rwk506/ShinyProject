@@ -1,0 +1,89 @@
+---
+title       : The Well-Being of Switzerland in 1888
+subtitle    : Exploring Fertility and Socioeconomic Data of 1888 Switzerland
+author      : R.W.K.
+job         : 
+framework   : landslide        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+--- 
+
+## The Well-Being of Switzerland in 1888
+# Exploring Fertility and Socioeconomic Data of Switzerland #
+
+*Summary*:
+
+In this project, we explore the relationships between six different measured indicators for 47 French-speaking provinces of Switzerland to learn more about the demographic shift of that time period.
+
+*Background*:
+
+The data utilized is from around 1888, only about 40 years after civil war ended and the Federal Constitution established. In the 1870's, Switzerland's government increased the distinction between Church and State, taking many of the previously-held power of the church into that of the government's jurisdiction. While immigration and emigration were balanced in the country for some time, emigration from Switzerland reached its peak in the late 1880's. After this, immigration overtook emigration and a demographic transition occurred. Switzerland's fertility was beginning to fall from the high level typical of underdeveloped countries and move into the modern era.
+
+
+
+---<section data-background="image.png">
+## Summary of Data
+
+The Swiss dataframe has 47 observations (for 47 Swiss provinces) of 6 measured variables* :
+</br></br>
+1. **Fertility**: common standardized fertility measure</br>
+2. **Agriculture**: % of males involved in agriculture as occupation</br>
+3. **Examination**: % draftees receiving highest mark on army examination</br>
+4. **Education**: % education beyond primary school for draftees.</br>
+5. **Catholic**:	% ‘catholic' (as opposed to ‘protestant’).</br>
+6. **Infant.Mortality**:	live births who live less than 1 year.</br>
+</br>
+##### *All variables but ‘Fertility’ give proportions of the population and are scaled to a [0, 100] range (percentage).
+
+</br></br>
+<img src="https://travelwritingandphotography.files.wordpress.com/2010/05/zurich-pano.jpg" alt="Switzerland panorama" style="width:800px;height:200px">
+##### Modern panorama of Zurich.
+
+---
+## The Application
+
+**Goal**:
+We aim to explore the relationships between six different measured indicators for 47 French-speaking provinces of Switzerland to learn more about the socio-economic and fertility health of the country. This should provide insight to the demographic shift of that time period.
+
+</br>
+
+**The Shiny App**:
+The application developed and deployed by Shiny and R allows exploration of these relationships. The available capabilities of the app are:
+- able to plot a user-chosen x-variable and y-variable (out of Fertility, Agriculture, or Infant.Mortality)
+- colors of the plotted points can be changed to reflect the value and trend of an additional variable (Education, Examination, or Catholic)
+- a simple linear regression can be fit to the plotted x and y variables (results will be printed and plotted)
+
+
+---
+## Plotting with the Shiny App
+An example of one of the possible plots that can be made with the Shiny app is shown below, with Fertility plotted against Infant Mortality, grouped by the Catholic variable. A distinction can be seen between the two groupings and more can be learned when exploring the dataset in the app.
+
+
+```r
+library(ggplot2)
+p = ggplot(data=swiss, aes(Fertility,Infant.Mortality, color = Catholic))
+    p = p + geom_point() + xlab("Infant.Mortality") + ylab("Fertility")
+    print(p)
+```
+
+![plot of chunk unnamed-chunk-1](assets/fig/unnamed-chunk-1.png) 
+
+
+
+--- 
+## Final Summary
+
+Examining the relationships between fertility, agriculture, infant health, etc. for these 47 French-speaking provinces of Switzerland can help us learn more about the demographic shift of that time period and how it may have been affected by immigration, emigration, and changes in government and religion. Explore these relationships yourself using the Shiny App!
+
+*References*:</br>
+- Mosteller, F. and Tukey, J. W. (1977).
+- http://history-switzerland.geschichte-schweiz.ch/
+- http://www.cicred.org/
+
+<img src="http://upload.wikimedia.org/wikipedia/commons/e/e0/Edward_Gennys_Fanshawe%2C_Piz_Bernina%2C_Scerscen%2C_Roseg..._Sella_%26_Gluschaint_and_Tschierva_%26..._Roseg_Glaciers_from_the_path_leading_to_Alp_Ota%2C_1880_%28Switzerland%29.jpg" alt="Switzerland circa 1880" style="width:384px;height:324px">
+
+
+
